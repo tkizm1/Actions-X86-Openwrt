@@ -251,3 +251,67 @@ jobs:
         with:
           name: Openwrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
           path: ${{ env.FIRMWARE }}
+      
+      - name: 生成 Release 标签
+        id: tag
+        if: steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
+        env:
+          ENABLE_FIREWALL: ${{github.event.inputs.firewall}}
+          LAN_IP: ${{github.event.inputs.lan-ip}}
+          WAN_IP: ${{github.event.inputs.wan-ip}}
+          WAN_NETMASK: ${{github.event.inputs.wan-netmask}}
+          WAN_GATEWAY: ${{github.event.inputs.wan-gateway}}
+          WAN_ETH: ${{github.event.inputs.wan-eth}}
+          NPC_PROTOCOL: ${{github.event.inputs.npc-protocol}}
+          NPC_SERVER: ${{github.event.inputs.npc-server}}
+          NPC_PORT: ${{github.event.inputs.npc-port}}
+          NPC_VKEY: ${{github.event.inputs.npc-vkey}}
+        run: |
+          LAN_PREFIX=""
+          if [[ "${LAN_IP}" != "" ]]; then
+            LAN_PREFIX="-"
+          fi
+          FIREWALL_TEXT=""
+          if [[ "${ENABLE_FIREWALL}" == "true" ]]; then
+            FIREWALL_TEXT="-firewall"
+          fi
+          CUSTOMIZE_TEXT=""
+          if [[ "${WAN_IP}" != "" && "${WAN_NETMASK}" != "" && "${WAN_GATEWAY}" != "" ]] || [[ "${NPC_SERVER}" != "" && "${NPC_PORT}" != "" && "${NPC_VKEY}" != "" ]]; then
+            CUSTOMIZE_TEXT="-customize"
+          fi
+          WAN_ETH_TEXT=""
+          if [[ "${WAN_ETH}" != "" ]]; then
+            WAN_ETH_TEXT="-wan-${WAN_ETH}"
+          fi
+          echo "release_tag=${RELEASE_PREFIX}${LAN_PREFIX}${LAN_IP}${FIREWALL_TEXT}${CUSTOMIZE_TEXT}${WAN_ETH_TEXT}-kernel-6.12-$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+          touch release.txt
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: 上传固件到 Release
+        uses: softprops/action-gh-release@v2
+        if: steps.tag.outputs.status == 'success' && !cancelled()
+        env:
+          GITHUB_TOKEN:  ${{ secrets.OPENWRT_TOKEN }}
+        with:
+          token:  ${{ secrets.OPENWRT_TOKEN }}
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          body_path: release.txt
+          files: ${{ env.FIRMWARE }}/*
+
+      - name: 删除 workflow runs
+        uses: FunctionXJB/delete-workflow-runs@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.OPENWRT_TOKEN }}
+        with:
+          token: ${{ secrets.OPENWRT_TOKEN }}
+          retain_days: 10
+          keep_minimum_runs: 10
+
+      - name: 删除旧的 Releases
+        uses: dev-drprasad/delete-older-releases@master
+        if: steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
+        env:
+          GITHUB_TOKEN: ${{ secrets.OPENWRT_TOKEN }}
+        with:
+          keep_latest: 10
+          delete_tags: true
