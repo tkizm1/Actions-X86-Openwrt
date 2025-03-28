@@ -47,7 +47,7 @@ sed -i '/msgid "Nps Client"/i\msgid "Npc"\nmsgstr "NPS穿透"\n' package/luci-ap
   
 # 修改LAN口默认IP
 if [[ "${LAN_IP}" != "" ]]; then
-  sed -i 's/192.168.2.1/'"${LAN_IP}"'/g' files/etc/config/network
+  sed -i 's/10.0.0.1/'"${LAN_IP}"'/g' files/etc/config/network
   sed -i 's/192.168.1.1/'"${LAN_IP}"'/g' package/base-files/files/bin/config_generate
 fi
 

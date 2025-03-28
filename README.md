@@ -4,12 +4,13 @@ Build openwrt using GitHub Actions | 使用 GitHub Actions 云编译 openwrt
 
 6.12 来自于 [namiltd](https://github.com/namiltd/openwrt.git)的奇妙版本
 
-# 本项目构建的镜像，不包含任何无限网卡相关驱动
+# 本项目构建的镜像，不包含任何无线网卡相关驱动
 
-### 每周六早上自动编译Openwrt最新代码。编译后系统主题为argon，去除了openwrt部分默认选中的软件，同时nginx去除http自动转https，编译分支为`master` ，即最新代码
+### 每天自动编译Openwrt最新代码。编译后系统主题为argon，去除了openwrt部分默认选中的软件，同时nginx去除http自动转https，编译分支为`master` ，即最新代码
 
 ### 额外包含以下软件
 
++ luci-app-nikki(科学上网)
 + luci-app-openclash(科学上网)
 + luci-app-npc(内网穿透)
 + luci-app-upnp(即插即用)
@@ -24,7 +25,7 @@ Build openwrt using GitHub Actions | 使用 GitHub Actions 云编译 openwrt
 ### 基本信息
 
 + 默认密码：无
-+ 默认IP：`192.168.2.1`
++ 默认IP：`10.0.0.1`
 + 默认WAN口：第1个网卡接口
 + 默认LAN口：第2、3、4、5、6个接口
 
