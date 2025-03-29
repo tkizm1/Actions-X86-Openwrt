@@ -161,7 +161,7 @@ jobs:
         with:
           ccache: false
           mixkey: ${{ env.REPO_URL }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
-          prefix: ${{ env.GITHUB_WORKSPACE }}/openwrt
+          prefix: /workdir/openwrt
 
       - name: 载入自定义 Feeds
         run: |
