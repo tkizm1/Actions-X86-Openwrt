@@ -4,8 +4,8 @@ sed -i 's/option check_signature/#option check_signature/g' /etc/opkg.conf
 # 替换为腾讯源
 sed -i 's/downloads.openwrt.org/mirrors.cloud.tencent.com\/openwrt/g' /etc/opkg/distfeeds.conf
 # 增加自定义源。如果有需要，可以在这里加
-echo 'src-git zerotier https://github.com/mwarning/zerotier-openwrt.git' >> /etc/opkg/customfeeds.conf
-echo 'src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main' >> /etc/opkg/customfeeds.conf
+# echo 'src-git zerotier https://github.com/mwarning/zerotier-openwrt.git' >> /etc/opkg/customfeeds.conf
+# echo 'src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main' >> /etc/opkg/customfeeds.conf
 #echo 'src/gz kmods https://op.supes.top/packages/x86_64/kmods/5.15.31 ' >> /etc/opkg/customfeeds.conf
 
 #重新配置nginx，不强制使用https
