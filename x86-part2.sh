@@ -26,21 +26,21 @@ rm -rf package/feeds/luci/luci-app-openclash
 #sed -i '/msgid "MihomoTProxy"/a\msgstr "出国加速"' package/OpenWrt-mihomo/luci-app-mihomo/po/zh_Hans/mihomo.po
 
 #luci-app-upnp
-sed -i 's/msgstr "UPnP IGD 和 PCP"/msgstr "即插即用"/g' feeds/luci/applications/luci-app-upnp/po/zh_Hans/upnp.po
-sed -i 's/msgstr "UPnP IGD 和 PCP\/NAT-PMP 服务"/msgstr "即插即用服务"/g' feeds/luci/applications/luci-app-upnp/po/zh_Hans/upnp.po
+# sed -i 's/msgstr "UPnP IGD 和 PCP"/msgstr "即插即用"/g' feeds/luci/applications/luci-app-upnp/po/zh_Hans/upnp.po
+# sed -i 's/msgstr "UPnP IGD 和 PCP\/NAT-PMP 服务"/msgstr "即插即用服务"/g' feeds/luci/applications/luci-app-upnp/po/zh_Hans/upnp.po
 
-#luci-app-nft-qos
-sed -i 's/msgstr "QoS Nftables 版"/msgstr "服务质量"/g' feeds/luci/applications/luci-app-nft-qos/po/zh_Hans/nft-qos.po
+# #luci-app-nft-qos
+# sed -i 's/msgstr "QoS Nftables 版"/msgstr "服务质量"/g' feeds/luci/applications/luci-app-nft-qos/po/zh_Hans/nft-qos.po
 
-#luci-app-ttyd
-sed -i 's/msgstr "终端"/msgstr "网页终端"/g' feeds/luci/applications/luci-app-ttyd/po/zh_Hans/ttyd.po
-sed -i "s/ssl === '1' ? 'https' : 'http'/ssl === '1' ? 'https' : location.protocol.replace(':','')/g" feeds/luci/applications/luci-app-ttyd/htdocs/luci-static/resources/view/ttyd/term.js
+# #luci-app-ttyd
+# sed -i 's/msgstr "终端"/msgstr "网页终端"/g' feeds/luci/applications/luci-app-ttyd/po/zh_Hans/ttyd.po
+# sed -i "s/ssl === '1' ? 'https' : 'http'/ssl === '1' ? 'https' : location.protocol.replace(':','')/g" feeds/luci/applications/luci-app-ttyd/htdocs/luci-static/resources/view/ttyd/term.js
 
-#luci-app-openclash
-sed -i 's/msgstr "OpenClash"/msgstr "科学上网"/g' package/luci-app-openclash/luci-app-openclash/po/zh-cn/openclash.zh-cn.po
+# #luci-app-openclash
+# sed -i 's/msgstr "OpenClash"/msgstr "科学上网"/g' package/luci-app-openclash/luci-app-openclash/po/zh-cn/openclash.zh-cn.po
 
-#luci-app-npc
-sed -i '/msgid "Nps Client"/i\msgid "Npc"\nmsgstr "NPS穿透"\n' package/luci-app-npc/po/zh_Hans/npc.po
+# #luci-app-npc
+# sed -i '/msgid "Nps Client"/i\msgid "Npc"\nmsgstr "NPS穿透"\n' package/luci-app-npc/po/zh_Hans/npc.po
 
 #luci-app-frpc
 #sed -i 's/msgstr "frp 客户端"/msgstr "FRP穿透"/g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
@@ -95,7 +95,7 @@ if [[ "${NPC_SERVER}" != "" && "${NPC_PORT}" != "" && "${NPC_VKEY}" != "" ]]; th
 fi
 
 # 修改编译信息
-sed -i 's/%D %V, %C/%D %V, %C, Build by YangHuanglin/g' package/base-files/files/etc/banner
+sed -i 's/%D %V, %C/%D %V, %C, Build by tkisme/g' package/base-files/files/etc/banner
 
 # 创建OpenClash使用的clash二进制文件所在的路径
 mkdir -p files/etc/openclash/core
