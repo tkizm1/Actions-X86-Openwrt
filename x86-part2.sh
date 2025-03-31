@@ -15,6 +15,8 @@ rm -rf package/feeds/luci/luci-theme-argon
 rm -rf package/feeds/luci/luci-app-openclash
 rm -rf package/feeds/luci/luci-app-airwhu/ package/feeds/luci/luci-app-amule/ package/feeds/luci/luci-app-appfilter/ package/feeds/luci/luci-app-bitsrunlogin-go/ package/feeds/luci/luci-app-cpufreq/ package/feeds/luci/luci-app-cpulimit/ package/feeds/luci/luci-app-dae/ package/feeds/luci/luci-app-daed/ package/feeds/luci/luci-app-ddns-go/ package/feeds/luci/luci-app-dufs/ package/feeds/luci/luci-app-filebrowser-go/ package/feeds/luci/luci-app-gost/ package/feeds/luci/luci-app-k3screenctrl/ package/feeds/luci/luci-app-mentohust/ package/feeds/luci/luci-app-minieap/ package/feeds/luci/luci-app-modemband/ package/feeds/luci/luci-app-msd_lite/ package/feeds/luci/luci-app-mwol/ package/feeds/luci/luci-app-n2n/ package/feeds/luci/luci-app-ngrokc/ package/feeds/luci/luci-app-njitclient/ package/feeds/luci/luci-app-oscam/ package/feeds/luci/luci-app-passwall/ package/feeds/luci/luci-app-ps3netsrv/ package/feeds/luci/luci-app-qbittorrent/ package/feeds/luci/luci-app-rustdesk-server/ package/feeds/luci/luci-app-scutclient/ package/feeds/luci/luci-app-spotifyd/ package/feeds/luci/luci-app-sysuh3c/ package/feeds/luci/luci-app-ua2f/ package/feeds/luci/luci-app-udp2raw/ package/feeds/luci/luci-app-verysync/ package/feeds/luci/luci-proto-minieap/ package/feeds/luci/luci-proto-quectel/
 
+rm feeds/zerotier/net/zerotier/files/etc/config/zerotier 
+cp files/zerotier.Makefile  feeds/zerotier/net/zerotier/Makefile
 #调整软件在菜单中的名称
 #luci-app-homeproxy
 #sed -i 's/msgstr "HomeProxy"/msgstr "家庭代理"/g' package/homeproxy/po/zh_Hans/homeproxy.po
@@ -115,4 +117,3 @@ chmod +x files/etc/openclash/core/clash*
 wget -qO- https://cdn.jsdelivr.net/gh/alecthw/mmdb_china_ip_list@release/Country.mmdb > files/etc/openclash/Country.mmdb
 wget -qO- https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat > files/etc/openclash/GeoIP.dat
 wget -qO- https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat > files/etc/openclash/GeoSite.dat
-
