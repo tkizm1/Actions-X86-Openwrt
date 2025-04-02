@@ -41,7 +41,7 @@ git clone https://github.com/yhl452493373/npc.git package/npc
 git clone https://github.com/yhl452493373/luci-app-npc.git package/luci-app-npc
 
 # nikki
-git clone -b dev --depth 1 https://github.com/nikkinikki-org/OpenWrt-nikki.git package/luci-app-nikki
+git clone -b main --depth 1 https://github.com/nikkinikki-org/OpenWrt-nikki.git package/luci-app-nikki
 
 # OpenClash，此处使用开发版
 git clone -b dev --depth 1 https://github.com/vernesong/OpenClash.git package/luci-app-openclash
